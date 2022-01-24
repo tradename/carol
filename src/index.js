@@ -82,8 +82,11 @@ async function Main() {
             headless: appconfig.appconfig.headless,
             userDataDir: path.join(process.cwd(), "ChromeSession"),
             devtools: false,
-            args: [...constants.DEFAULT_CHROMIUM_ARGS, ...pptrArgv], ...extraArguments
-        });
+            args: [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+  ],
+});
         spinner.stop("Launching Chrome ... done!");
         if (argv.proxyURI) {
             spinner.info("Using a Proxy Server");
